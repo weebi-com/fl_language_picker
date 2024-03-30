@@ -1,9 +1,7 @@
 import 'package:flutter/material.dart';
 
-import 'package:flutter/cupertino.dart';
-
-import 'package:language_pickers/languages.dart';
-import 'package:language_pickers/language_pickers.dart';
+import 'package:language_picker/languages.dart';
+import 'package:language_picker/language_picker.dart';
 
 void main() => runApp(MyApp());
 
@@ -11,17 +9,23 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'language_pickers Example',
+      title: 'language_picker Example',
       theme: ThemeData(
+        useMaterial3: true,
         primarySwatch: Colors.blue,
+        buttonTheme: const ButtonThemeData(
+          buttonColor: Color(0xFF0097A7),
+          textTheme: ButtonTextTheme.normal,
+        ),
+        indicatorColor: Color(0xfffffe9d),
       ),
-      home: MyHomePage(title: 'language_pickers Example'),
+      home: MyHomePage(title: 'language_picker Example'),
     );
   }
 }
 
 class MyHomePage extends StatefulWidget {
-  MyHomePage({Key key, this.title}) : super(key: key);
+  MyHomePage({Key? key, required this.title}) : super(key: key);
 
   final String title;
 
@@ -29,73 +33,47 @@ class MyHomePage extends StatefulWidget {
   _MyHomePageState createState() => _MyHomePageState();
 }
 
-class _MyHomePageState extends State<MyHomePage> {
-  Language _selectedDropdownLanguage =
-      LanguagePickerUtils.getLanguageByIsoCode('ko');
-  Language _selectedDialogLanguage =
-      LanguagePickerUtils.getLanguageByIsoCode('ko');
-  Language _selectedCupertinoLanguage =
-      LanguagePickerUtils.getLanguageByIsoCode('ko');
+class LanguageWidget extends StatelessWidget {
+  final Language language;
+  const LanguageWidget(this.language, {super.key});
 
-  // It's sample code of Dropdown Item.
-  Widget _buildDropdownItem(Language language) {
-    return Row(
-      children: <Widget>[
-        SizedBox(
-          width: 8.0,
-        ),
-        Text("${language.name} (${language.isoCode})"),
-      ],
+  @override
+  Widget build(BuildContext context) {
+    return ListTile(
+      leading: CircleAvatar(
+        child: Text(language.name.isEmpty
+            ? language.nameEn.substring(0, 1).toUpperCase()
+            : language.name.substring(0, 1).toUpperCase()),
+      ),
+      title: Text(language.name),
+      subtitle: Text(language.nameEn),
     );
   }
+}
+
+class _MyHomePageState extends State<MyHomePage> {
+  // Language _selectedDialogLanguage = Languages.french;
+  Language _selectedDialogLanguage = Language.empty;
 
   // It's sample code of Dialog Item.
-  Widget _buildDialogItem(Language language) => Row(
-        children: <Widget>[
-          Text(language.name),
-          SizedBox(width: 8.0),
-          Flexible(child: Text("(${language.isoCode})"))
-        ],
-      );
 
   void _openLanguagePickerDialog() => showDialog(
         context: context,
         builder: (context) => Theme(
-            data: Theme.of(context).copyWith(primaryColor: Colors.pink),
-            child: LanguagePickerDialog(
-                titlePadding: EdgeInsets.all(8.0),
-                searchCursorColor: Colors.pinkAccent,
-                searchInputDecoration: InputDecoration(hintText: 'Search...'),
-                isSearchable: true,
-                title: Text('Select your language'),
-                onValuePicked: (Language language) => setState(() {
-                      _selectedDialogLanguage = language;
-                      print(_selectedDialogLanguage.name);
-                      print(_selectedDialogLanguage.isoCode);
-                    }),
-                itemBuilder: _buildDialogItem)),
-      );
-
-  // It's sample code of Cupertino Item.
-  void _openCupertinoLanguagePicker() => showCupertinoModalPopup<void>(
-      context: context,
-      builder: (BuildContext context) {
-        return LanguagePickerCupertino(
-          pickerSheetHeight: 200.0,
-          onValuePicked: (Language language) => setState(() {
-                _selectedCupertinoLanguage = language;
-                print(_selectedCupertinoLanguage.name);
-                print(_selectedCupertinoLanguage.isoCode);
-              }),
-        );
-      });
-
-  Widget _buildCupertinoItem(Language language) => Row(
-        children: <Widget>[
-          Text("+${language.name}"),
-          SizedBox(width: 8.0),
-          Flexible(child: Text(language.name))
-        ],
+          data: Theme.of(context),
+          child: LanguagePickerDialog(
+            // searchCursorColor: Colors.pinkAccent,
+            searchInputDecoration:
+                InputDecoration(icon: const Icon(Icons.search)),
+            isSearchable: true,
+            title: const Icon(Icons.translate,
+                size: 44), // Text('Select your language'),
+            onValuePicked: (Language language) => setState(() {
+              _selectedDialogLanguage = language;
+            }),
+            itemBuilder: (language) => LanguageWidget(language),
+          ),
+        ),
       );
 
   @override
@@ -108,34 +86,18 @@ class _MyHomePageState extends State<MyHomePage> {
         child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[
-              Expanded(
-                child: Center(
-                  child: LanguagePickerDropdown(
-                    initialValue: 'ko',
-                    itemBuilder: _buildDropdownItem,
-                    onValuePicked: (Language language) {
-                      _selectedDropdownLanguage = language;
-                      print(_selectedDropdownLanguage.name);
-                      print(_selectedDropdownLanguage.isoCode);
-                    },
-                  ),
-                ),
-              ),
-              Expanded(
-                child: Center(
-                  child: MaterialButton(
-                    child: Text("Push"),
-                    onPressed: _openLanguagePickerDialog,
-                  ),
-                ),
-              ),
-              Expanded(
-                child: Center(
-                  child: ListTile(
-                    title: _buildCupertinoItem(_selectedCupertinoLanguage),
-                    onTap: _openCupertinoLanguagePicker,
-                  ),
-                ),
+              ListTile(
+                onTap: _openLanguagePickerDialog,
+                isThreeLine: true,
+                title: Center(
+                    child: Column(
+                  children: [
+                    const Icon(Icons.translate, size: 38),
+                    const SizedBox(height: 14),
+                    Text(_selectedDialogLanguage.name),
+                  ],
+                )),
+                subtitle: Center(child: Text(_selectedDialogLanguage.nameEn)),
               ),
             ]),
       ), // This trailing comma makes auto-formatting nicer for build methods.

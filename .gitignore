@@ -14,7 +14,6 @@
 *.class
 
 # Generated files
-bin/
 gen/
 out/
 
@@ -468,6 +467,8 @@ flutter_*.png
 linked_*.ds
 unlinked.ds
 unlinked_spec.ds
+*_test.dart.dill
+test/failures/
 
 # Android related
 **/android/**/gradle-wrapper.jar
@@ -528,8 +529,9 @@ app.*.symbols
 !/packages/flutter_tools/test/data/dart_dependencies_test/**/.packages
 !/dev/ci/**/Gemfile.lock
 
-# Added by myself
-test/
-android/
-example/test/
-
+example/android
+example/linux
+example/macos
+example/web
+example/windows
+example/ios
