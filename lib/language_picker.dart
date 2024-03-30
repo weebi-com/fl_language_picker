@@ -1,3 +1,4 @@
 library language_picker;
 
-export 'language_picker_dialog.dart';
+export 'views/language_picker_dialog.dart';
+export 'views/language_widget.dart';
