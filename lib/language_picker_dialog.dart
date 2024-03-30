@@ -1,8 +1,8 @@
-import 'package:language_picker/languages.dart';
-import 'package:language_picker/utils/no_accents.dart';
-import 'package:language_picker/utils/typedefs.dart';
+import 'package:fl_language_picker/languages.dart';
+import 'package:fl_language_picker/utils/no_accents.dart';
+import 'package:fl_language_picker/utils/typedefs.dart';
 
-import 'package:language_picker/utils/my_alert_dialog.dart';
+import 'package:fl_language_picker/utils/my_alert_dialog.dart';
 import 'package:flutter/material.dart';
 
 ///Provides a customizable [Dialog] which displays all languages

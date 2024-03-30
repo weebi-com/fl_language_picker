@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-import 'package:language_picker/languages.dart';
-import 'package:language_picker/language_picker.dart';
+import 'package:fl_language_picker/languages.dart';
+import 'package:fl_language_picker/language_picker.dart';
 
 void main() => runApp(MyApp());
 

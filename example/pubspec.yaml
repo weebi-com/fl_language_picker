@@ -1,7 +1,7 @@
-name: language_picker_example
+name: fl_language_picker_example
 description: Example application of language_picker Flutter package.
 publish_to: none
-version: 1.0.0+1
+version: 1.0.0
 
 environment:
   sdk: ">=3.1.5 <4.0.0"
@@ -10,9 +10,7 @@ dependencies:
   flutter:
     sdk: flutter
 
-  cupertino_icons: ^1.0.6
-
-  language_picker:
+  fl_language_picker:
     path: ../
 
 dev_dependencies:
