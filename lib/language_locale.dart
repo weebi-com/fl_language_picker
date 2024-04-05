@@ -166,7 +166,7 @@ class Languages {
       'Mongolian (Cyrillic)',
       'монгол хэл');
   static Language get mongolianTraditional => Language(
-      Locale.fromSubtags(languageCode: 'mn', scriptCode: 'Cyrl'),
+      Locale.fromSubtags(languageCode: 'mn', scriptCode: 'Mong'),
       'Mongolian (Traditional)',
       'ᠮᠣᠩᠭᠣᠯ ᠬᠡᠯᠡ');
   static Language get myanmar => Language(Locale('my'), 'Myanmar', 'ဗမာစာ');
