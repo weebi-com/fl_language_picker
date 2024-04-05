@@ -155,8 +155,6 @@ class Languages {
   static Language get tigrinya => Language('ti', 'Tigrinya', 'ትግርኛ');
   static Language get tongan => Language('to', 'Tongan', 'faka Tonga');
   static Language get turkish => Language('tr', 'Turkish', 'Türkçe');
-  static Language get turkmenLatin =>
-      Language('tk', 'Turkmen (Latin)', 'Türkmen / Түркмен');
   static Language get ukrainian =>
       Language('uk', 'Ukrainian', 'українська мова');
   static Language get upperSorbian => Language('hsb', 'Upper Sorbian', '');
@@ -295,7 +293,6 @@ class Languages {
     Languages.tigrinya,
     Languages.tongan,
     Languages.turkish,
-    Languages.turkmenLatin,
     Languages.ukrainian,
     Languages.upperSorbian,
     Languages.urdu,

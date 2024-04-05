@@ -1,3 +1,7 @@
+## [0.0.3] - 5th April 2024
+
+- removed rare locales
+
 ## [0.0.2] - 30th March 2024
 
 - better example

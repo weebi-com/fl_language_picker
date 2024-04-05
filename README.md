@@ -1,4 +1,4 @@
-Language picker with __x131 native language name__, for example : 
+Language picker with __x130 native language name__, for example : 
 
 - French is displayed as 'Français'
 - Japanese is displayed as 日本語
