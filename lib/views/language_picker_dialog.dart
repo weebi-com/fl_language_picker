@@ -1,4 +1,4 @@
-import 'package:fl_language_picker/languages.dart';
+import 'package:fl_language_picker/language_locale.dart';
 import 'package:fl_language_picker/utils/no_accents.dart';
 import 'package:fl_language_picker/utils/typedefs.dart';
 
@@ -74,8 +74,8 @@ class LanguagePickerDialog extends StatefulWidget {
   ///The search empty view is displayed if nothing returns from search result
   final Widget? searchEmptyView;
 
-  /// List of languages available in this picker.
-  final List<Language>? languages;
+  /// List of locales passed by app used to be displayed in the picker.
+  final List<Locale>? locales;
 
   LanguagePickerDialog({
     Key? key,
@@ -93,7 +93,7 @@ class LanguagePickerDialog extends StatefulWidget {
     this.searchInputDecoration,
     this.searchCursorColor,
     this.searchEmptyView,
-    this.languages,
+    this.locales,
   }) : super(key: key);
 
   @override
@@ -108,7 +108,16 @@ class SingleChoiceDialogState extends State<LanguagePickerDialog> {
 
   @override
   void initState() {
-    _allLanguages = widget.languages ?? Languages.defaultLanguages;
+    _allLanguages = <Language>[];
+    if (widget.locales != null) {
+      for (final language in Languages.defaultLanguages) {
+        if (widget.locales!.any((e) => e == language.locale)) {
+          _allLanguages.add(language);
+        }
+      }
+    } else {
+      _allLanguages = Languages.defaultLanguages;
+    }
     _filteredLanguages = _allLanguages;
     super.initState();
   }

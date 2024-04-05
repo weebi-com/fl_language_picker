@@ -1,3 +1,8 @@
+## [0.0.3] - 6th April 2024
+
+- locales are easier to handle
+- match locales to filter languages displayed
+
 ## [0.0.2] - 30th March 2024
 
 - better example

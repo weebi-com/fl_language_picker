@@ -1,8 +1,8 @@
 import 'dart:ui';
 
+import 'package:fl_language_picker/language_locale.dart';
 import 'package:flutter/material.dart';
 
-import 'package:fl_language_picker/languages.dart';
 import 'package:fl_language_picker/language_picker.dart';
 
 void main() => runApp(const MyApp());
@@ -37,9 +37,9 @@ class _MyHomePageState extends State<MyHomePage> {
   void initState() {
     super.initState();
     final locale = PlatformDispatcher.instance.locale;
-    if (Languages.defaultLanguages.any((e) => e.code == locale.languageCode)) {
-      _selectedLanguage = Languages.defaultLanguages
-          .firstWhere((e) => e.code == locale.languageCode);
+    if (Languages.defaultLanguages.any((e) => e.locale == locale)) {
+      _selectedLanguage =
+          Languages.defaultLanguages.firstWhere((e) => e.locale == locale);
     } else {
       _selectedLanguage = Language.empty;
     }
