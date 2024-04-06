@@ -1,5 +1,6 @@
-## [0.0.3] - 6th April 2024
+## [0.0.4] - 6th April 2024
 
+- fix mong
 - locales are easier to handle
 - match locales to filter languages displayed
 
